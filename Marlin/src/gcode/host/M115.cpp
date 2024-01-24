@@ -32,7 +32,7 @@
   #include "../../feature/caselight.h"
 #endif
 
-#if !defined(MACHINE_UUID) && HAS_STM32_UID
+#if !defined(MACHINE_UUID) && ENABLED(HAS_STM32_UID)
   #include "../../libs/hex_print.h"
 #endif
 
@@ -69,7 +69,7 @@ void GcodeSuite::M115() {
     #if NUM_AXES != XYZ
       " AXIS_COUNT:" STRINGIFY(NUM_AXES)
     #endif
-    #if defined(MACHINE_UUID) || HAS_STM32_UID
+    #if defined(MACHINE_UUID) || ENABLED(HAS_STM32_UID)
       " UUID:"
     #endif
     #ifdef MACHINE_UUID
@@ -77,7 +77,7 @@ void GcodeSuite::M115() {
     #endif
   );
 
-  #if !defined(MACHINE_UUID) && HAS_STM32_UID
+  #if !defined(MACHINE_UUID) && ENABLED(HAS_STM32_UID)
     /**
      * STM32-based devices have a 96-bit CPU device serial number.
      * Used by LumenPnP / OpenPNP to keep track of unique hardware/configurations.
@@ -90,7 +90,7 @@ void GcodeSuite::M115() {
     #else
       uint16_t * const UID = (uint16_t*)UID_BASE;
       SERIAL_ECHO(
-        F("CEDE2A2F-"), hex_word(UID[0]), '-', hex_word(UID[1]), '-', hex_word(UID[2]), '-',
+        F("CEDE2A2F-"), hex_word(UID[0]), C('-'), hex_word(UID[1]), C('-'), hex_word(UID[2]), C('-'),
         hex_word(UID[3]), hex_word(UID[4]), hex_word(UID[5])
       );
     #endif
