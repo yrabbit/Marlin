@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2021 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2024 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -22,11 +22,24 @@
 #pragma once
 
 /**
- * Geeetech GT2560 Rev B Pins
- * Schematic: https://www.geeetech.com/wiki/images/7/72/GT2560_REVB.pdf
- * ATmega2560
+ * pins_lcd.h - Define LCD pins based on the EXP connector / adapter
  */
 
-#define BOARD_INFO_NAME "GT2560 Rev B"
+/**
+ * Certain displays use LCD_PINS_RS as LCD_RESET_PIN
+ */
+#if !defined(LCD_RESET_PIN) && ANY(MKS_12864OLED, MKS_12864OLED_SSD1306, FYSETC_242_OLED_12864, ZONESTAR_12864OLED, K3D_242_OLED_CONTROLLER)
+  #define LCD_RESET_PIN LCD_PINS_RS
+#endif
 
-#include "pins_GT2560_V3.h"
+/**
+ * Make sure DOGLCD_SCK and DOGLCD_MOSI are defined.
+ */
+#if HAS_MARLINUI_U8GLIB
+  #ifndef DOGLCD_SCK
+    #define DOGLCD_SCK  SD_SCK_PIN
+  #endif
+  #ifndef DOGLCD_MOSI
+    #define DOGLCD_MOSI SD_MOSI_PIN
+  #endif
+#endif
