@@ -60,12 +60,15 @@ Every new HAL opens up a world of hardware. At this time we need HALs for RP2040
   [STM32F7x6](//www.st.com/en/microcontrollers-microprocessors/stm32f7x6.html)|ARM® Cortex-M7|The Borg, RemRam V1
   [STM32G0B1RET6](//www.st.com/en/microcontrollers-microprocessors/stm32g0x1.html)|ARM® Cortex-M0+|BigTreeTech SKR mini E3 V3.0
   [STM32H743xIT6](//www.st.com/en/microcontrollers-microprocessors/stm32h743-753.html)|ARM® Cortex-M7|BigTreeTech SKR V3.0, SKR EZ V3.0, SKR SE BX V2.0/V3.0
+  [SAMD21P20A](//www.adafruit.com/product/4064)|ARM® Cortex-M0+|Adafruit Grand Central M4
   [SAMD51P20A](//www.adafruit.com/product/4064)|ARM® Cortex-M4|Adafruit Grand Central M4
-  [Teensy 3.5](//www.pjrc.com/store/teensy35.html)|ARM® Cortex-M4|
-  [Teensy 3.6](//www.pjrc.com/store/teensy36.html)|ARM® Cortex-M4|
-  [Teensy 4.0](//www.pjrc.com/store/teensy40.html)|ARM® Cortex-M7|
-  [Teensy 4.1](//www.pjrc.com/store/teensy41.html)|ARM® Cortex-M7|
-  Linux Native|x86/ARM/etc.|Raspberry Pi
+  [Teensy 3.2/3.1](//www.pjrc.com/teensy/teensy31.html)|MK20DX256VLH7 ARM® Cortex-M4|
+  [Teensy 3.5](//www.pjrc.com/store/teensy35.html)|MK64FX512-VMD12 ARM® Cortex-M4|
+  [Teensy 3.6](//www.pjrc.com/store/teensy36.html)|MK66FX1MB-VMD18 ARM® Cortex-M4|
+  [Teensy 4.0](//www.pjrc.com/store/teensy40.html)|MIMXRT1062-DVL6B ARM® Cortex-M7|
+  [Teensy 4.1](//www.pjrc.com/store/teensy41.html)|MIMXRT1062-DVJ6B ARM® Cortex-M7|
+  Linux Native|x86 / ARM / RISC-V|Raspberry Pi GPIO
+  Simulator|Windows, macOS, Linux|Desktop OS
   [All supported boards](//marlinfw.org/docs/hardware/boards.html#boards-list)|All platforms|All boards
 
 ## Marlin Support
