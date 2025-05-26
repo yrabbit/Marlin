@@ -59,16 +59,19 @@ namespace LanguageNarrow_it {
   LSTR MSG_LOW                            = _UxGT("BASSO");
   LSTR MSG_BACK                           = _UxGT("Indietro");
   LSTR MSG_ERROR                          = _UxGT("Errore");
+
   LSTR MSG_MEDIA_ABORTING                 = _UxGT("Annullando...");
   LSTR MSG_MEDIA_INSERTED                 = MEDIA_TYPE_IT _UxGT(" inserito");
   LSTR MSG_MEDIA_REMOVED                  = MEDIA_TYPE_IT _UxGT(" rimosso");
-  LSTR MSG_MEDIA_WAITING                  = _UxGT("Aspettando ") MEDIA_TYPE_IT;
   LSTR MSG_MEDIA_INIT_FAIL                = _UxGT("Iniz.") MEDIA_TYPE_IT _UxGT(" fallita");
   LSTR MSG_MEDIA_READ_ERROR               = _UxGT("Err.leggendo ") MEDIA_TYPE_IT;
-  LSTR MSG_MEDIA_USB_REMOVED              = _UxGT("Dispos.USB rimosso");
-  LSTR MSG_MEDIA_USB_FAILED               = _UxGT("Avvio USB fallito");
   LSTR MSG_MEDIA_SORT                     = _UxGT("Ordina ") MEDIA_TYPE_IT;
   LSTR MSG_MEDIA_UPDATE                   = _UxGT("Aggiorna ") MEDIA_TYPE_IT;
+  LSTR MSG_USB_FD_WAITING_FOR_MEDIA       = _UxGT("In attesa unità USB");
+  LSTR MSG_USB_FD_MEDIA_REMOVED           = _UxGT("Unità USB rimossa");
+  LSTR MSG_USB_FD_DEVICE_REMOVED          = _UxGT("Unità USB rimossa");
+  LSTR MSG_USB_FD_USB_FAILED              = _UxGT("Iniz. USB fallita");
+
   LSTR MSG_KILL_SUBCALL_OVERFLOW          = _UxGT("Overflow sottochiamate");
   LSTR MSG_LCD_ENDSTOPS                   = _UxGT("Finecor."); // Max 8 characters
   LSTR MSG_LCD_SOFT_ENDSTOPS              = _UxGT("Finecorsa soft");
@@ -848,6 +851,7 @@ namespace LanguageNarrow_it {
   LSTR MSG_FILAMENT_CHANGE_PURGE          = _UxGT(MSG_1_LINE("Spurgo filamento"));
   LSTR MSG_FILAMENT_CHANGE_CONT_PURGE     = _UxGT(MSG_1_LINE("Premi x terminare"));
   LSTR MSG_FILAMENT_CHANGE_RESUME         = _UxGT(MSG_1_LINE("Ripresa..."));
+
   LSTR MSG_TMC_DRIVERS                    = _UxGT("Driver TMC");
   LSTR MSG_TMC_CURRENT                    = _UxGT("Corrente driver");
   LSTR MSG_TMC_ACURRENT                   = _UxGT("Corrente driver ") STR_A;
