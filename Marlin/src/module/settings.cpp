@@ -3708,6 +3708,7 @@ void MarlinSettings::reset() {
   // Model predictive control
   //
   #if ENABLED(MPCTEMP)
+
     constexpr float _mpc_heater_power[] = MPC_HEATER_POWER;
     constexpr float _mpc_block_heat_capacity[] = MPC_BLOCK_HEAT_CAPACITY;
     constexpr float _mpc_sensor_responsiveness[] = MPC_SENSOR_RESPONSIVENESS;
@@ -3737,7 +3738,8 @@ void MarlinSettings::reset() {
       #endif
       mpc.filament_heat_capacity_permm = _filament_heat_capacity_permm[e];
     }
-  #endif
+
+  #endif // MPCTEMP
 
   //
   // Fixed-Time Motion
