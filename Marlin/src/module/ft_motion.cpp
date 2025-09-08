@@ -467,18 +467,8 @@ void FTMotion::loadBlockData(block_t * const current_block) {
               oneOverLength = 1.0f / totalLength;
 
   startPosn = endPosn_prevBlock;
-  const xyze_pos_t moveDist = LOGICAL_AXIS_ARRAY(
-    current_block->steps.e * planner.mm_per_step[block_extruder_axis] * (current_block->direction_bits.e ? 1 : -1),
-    current_block->steps.x * planner.mm_per_step[X_AXIS] * (current_block->direction_bits.x ? 1 : -1),
-    current_block->steps.y * planner.mm_per_step[Y_AXIS] * (current_block->direction_bits.y ? 1 : -1),
-    current_block->steps.z * planner.mm_per_step[Z_AXIS] * (current_block->direction_bits.z ? 1 : -1),
-    current_block->steps.i * planner.mm_per_step[I_AXIS] * (current_block->direction_bits.i ? 1 : -1),
-    current_block->steps.j * planner.mm_per_step[J_AXIS] * (current_block->direction_bits.j ? 1 : -1),
-    current_block->steps.k * planner.mm_per_step[K_AXIS] * (current_block->direction_bits.k ? 1 : -1),
-    current_block->steps.u * planner.mm_per_step[U_AXIS] * (current_block->direction_bits.u ? 1 : -1),
-    current_block->steps.v * planner.mm_per_step[V_AXIS] * (current_block->direction_bits.v ? 1 : -1),
-    current_block->steps.w * planner.mm_per_step[W_AXIS] * (current_block->direction_bits.w ? 1 : -1)
-  );
+
+  const xyze_pos_t& moveDist = current_block->dist_mm;
 
   ratio = moveDist * oneOverLength;
 
@@ -566,17 +556,14 @@ void FTMotion::loadBlockData(block_t * const current_block) {
   // Watch endstops until the move ends
   const millis_t move_end_ti = millis() + SEC_TO_MS((FTM_TS) * float(max_intervals + num_samples_shaper_settle() + ((PROP_BATCHES) + 1) * (FTM_BATCH_SIZE)) + (float(FTM_STEPPERCMD_BUFF_SIZE) / float(FTM_STEPPER_FS)));
 
-  #define __SET_MOVE_END(A,V) do{ if (V) { axis_move_end_ti.A = move_end_ti; axis_move_dir.A = (V > 0); } }while(0);
-  #define _SET_MOVE_END(A) __SET_MOVE_END(A, moveDist[_AXIS(A)])
-  #if CORE_IS_XY
-    __SET_MOVE_END(X, moveDist.x + moveDist.y);
-    __SET_MOVE_END(Y, moveDist.x - moveDist.y);
-  #else
-    _SET_MOVE_END(X);
-    _SET_MOVE_END(Y);
-  #endif
-  TERN_(HAS_Z_AXIS, _SET_MOVE_END(Z));
-  SECONDARY_AXIS_MAP(_SET_MOVE_END);
+  #define _SET_MOVE_END(A) do{ \
+    if (moveDist.A) { \
+      axis_move_end_ti.A = move_end_ti; \
+      axis_move_dir.A = moveDist.A > 0; \
+    } \
+  }while(0);
+
+  LOGICAL_AXIS_MAP(_SET_MOVE_END);
 }
 
 // Generate data points of the trajectory.
