@@ -56,12 +56,14 @@ typedef struct FTConfig {
     #else
       static constexpr dynFreqMode_t dynFreqMode = dynFreqMode_DISABLED;
     #endif
+
   #endif // HAS_FTM_SHAPING
 
   #if HAS_EXTRUDERS
     bool linearAdvEna = FTM_LINEAR_ADV_DEFAULT_ENA;       // Linear advance enable configuration.
     float linearAdvK = FTM_LINEAR_ADV_DEFAULT_K;          // Linear advance gain.
   #endif
+
 } ft_config_t;
 
 class FTMotion {

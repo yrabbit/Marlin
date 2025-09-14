@@ -269,11 +269,8 @@ void FTMotion::loop() {
         Ai[2] = Ai[0] * K2;
 
         const float adj = 1.0f / (Ai[0] + Ai[1] + Ai[2]);
-        for (uint32_t i = 0U; i < 3U; i++) {
-          Ai[i] *= adj;
-        }
-      }
-      break;
+        for (uint32_t i = 0; i < 3U; i++) Ai[i] *= adj;
+      } break;
 
       case ftMotionShaper_2HEI: {
         max_i = 3U;
@@ -285,11 +282,8 @@ void FTMotion::loop() {
         Ai[3] = Ai[0] * K3;
 
         const float adj = 1.0f / (Ai[0] + Ai[1] + Ai[2] + Ai[3]);
-        for (uint32_t i = 0U; i < 4U; i++) {
-          Ai[i] *= adj;
-        }
-      }
-      break;
+        for (uint32_t i = 0; i < 4U; i++) Ai[i] *= adj;
+      } break;
 
       case ftMotionShaper_3HEI: {
         max_i = 4U;
@@ -300,11 +294,8 @@ void FTMotion::loop() {
         Ai[4] = Ai[0] * K4;
 
         const float adj = 1.0f / (Ai[0] + Ai[1] + Ai[2] + Ai[3] + Ai[4]);
-        for (uint32_t i = 0U; i < 5U; i++) {
-          Ai[i] *= adj;
-        }
-      }
-      break;
+        for (uint32_t i = 0; i < 5U; i++) Ai[i] *= adj;
+      } break;
 
       case ftMotionShaper_MZV: {
         max_i = 2U;
@@ -358,13 +349,13 @@ void FTMotion::loop() {
 
   void FTMotion::update_shaping_params() {
     #if HAS_X_AXIS
-      if ((shaping.x.ena = AXIS_HAS_SHAPER(X))) {
+      if ((shaping.x.ena = AXIS_IS_SHAPING(X))) {
         shaping.x.set_axis_shaping_A(cfg.shaper.x, cfg.zeta.x, cfg.vtol.x);
         shaping.x.set_axis_shaping_N(cfg.shaper.x, cfg.baseFreq.x, cfg.zeta.x);
       }
     #endif
     #if HAS_Y_AXIS
-      if ((shaping.y.ena = AXIS_HAS_SHAPER(Y))) {
+      if ((shaping.y.ena = AXIS_IS_SHAPING(Y))) {
         shaping.y.set_axis_shaping_A(cfg.shaper.y, cfg.zeta.y, cfg.vtol.y);
         shaping.y.set_axis_shaping_N(cfg.shaper.y, cfg.baseFreq.y, cfg.zeta.y);
       }
@@ -663,6 +654,7 @@ void FTMotion::generateTrajectoryPointsFromBlock() {
         }
       #endif
       if (++shaping.zi_idx == (FTM_ZMAX)) shaping.zi_idx = 0;
+
     #endif // HAS_FTM_SHAPING
 
     // Filled up the queue with regular and shaped steps
