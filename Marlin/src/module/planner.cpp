@@ -2417,7 +2417,7 @@ bool Planner::_populate_block(
        */
       if (esteps && dm.e) {
         const bool ftm_active = TERN0(FTM_HAS_LIN_ADVANCE, ftMotion.cfg.active);
-        const float advK = TERN_(FTM_HAS_LIN_ADVANCE, ftm_active ? ftMotion.cfg.linearAdvK :) extruder_advance_K[E_INDEX_N(extruder)];
+        const float advK = TERN_(FTM_HAS_LIN_ADVANCE, ftm_active ? ftMotion.cfg.linearAdvK :) TERN0(LIN_ADVANCE, extruder_advance_K[E_INDEX_N(extruder)]);
         if (advK) {
           float e_D_ratio = (target_float.e - position_float.e) /
             TERN(IS_KINEMATIC, block->millimeters,
