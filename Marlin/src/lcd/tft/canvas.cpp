@@ -31,15 +31,15 @@ uint16_t Canvas::startLine, Canvas::endLine;
 uint16_t Canvas::background_color;
 uint16_t *Canvas::buffer = TFT::buffer;
 
-void Canvas::instantiate(uint16_t x, uint16_t y, uint16_t width, uint16_t height) {
-  Canvas::width = width;
-  Canvas::height = height;
+void Canvas::instantiate(uint16_t x, uint16_t y, uint16_t w, uint16_t h) {
+  width = w;
+  height = h;
   startLine = 0;
   endLine = 0;
 
   // The TFT handles DMA within the given canvas rectangle
   // so whatever is drawn will be offset on the screen by x,y.
-  tft.set_window(x, y, x + width - 1, y + height - 1);
+  tft.set_window(x, y, x + w - 1, y + h - 1);
 }
 
 void Canvas::next() {
