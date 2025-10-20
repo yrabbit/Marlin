@@ -2169,7 +2169,7 @@ void autoHome() { queue.inject_P(G28_STR); }
   void applyZOffset() { TERN_(EEPROM_SETTINGS, settings.save()); }
   void liveZOffset() {
     #if ANY(BABYSTEP_ZPROBE_OFFSET, JUST_BABYSTEP)
-      const float step_zoffset = roundf((menuData.value / 100.0f) * planner.settings.axis_steps_per_mm[Z_AXIS]) - babystep.accum;
+      const float step_zoffset = roundf((menuData.value * 0.01f) * planner.settings.axis_steps_per_mm[Z_AXIS]) - babystep.accum;
       if (BABYSTEP_ALLOWED()) babystep.add_steps(Z_AXIS, step_zoffset);
     #endif
   }

@@ -1388,7 +1388,7 @@ void hmiMoveDone(const AxisEnum axis) {
     LIMIT(hmiValues.offset_value, _OFFSET_ZMIN * 100, _OFFSET_ZMAX * 100);
 
     last_zoffset = dwin_zoffset;
-    dwin_zoffset = hmiValues.offset_value / 100.0f;
+    dwin_zoffset = hmiValues.offset_value * 0.01f;
     #if ANY(BABYSTEP_ZPROBE_OFFSET, JUST_BABYSTEP)
       if (BABYSTEP_ALLOWED()) babystep.add_mm(Z_AXIS, dwin_zoffset - last_zoffset);
     #endif
