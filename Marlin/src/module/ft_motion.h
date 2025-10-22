@@ -145,7 +145,7 @@ class FTMotion {
 
     #if HAS_FTM_SHAPING
       // Refresh gains and indices used by shaping functions.
-      static void update_shaping_params(void);
+      static void update_shaping_params();
     #endif
 
     #if ENABLED(FTM_SMOOTHING)
